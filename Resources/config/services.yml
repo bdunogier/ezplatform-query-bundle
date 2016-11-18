@@ -1,0 +1,32 @@
+parameters:
+    # Filled by QueryTypesListPass
+    bd_query.query_types_names: []
+
+services:
+    bd_query.command.run_query:
+        class: BD\EzPlatformQueryBundle\Command\RunQueryCommand
+        arguments:
+            - "@ezpublish.api.service.search"
+            - "@ezpublish.query_type.registry"
+            - "@bd_query.formatter.search_result.simple_output"
+        tags:
+            - {name: console.command}
+
+    bd_query.command.list_query_types:
+        class: BD\EzPlatformQueryBundle\Command\ListQueryTypesCommand
+        arguments:
+            - "%bd_query.query_types%"
+            - "@ezpublish.query_type.registry"
+        tags:
+            - {name: console.command}
+
+    bd_query.formatter.search_result.simple_output:
+        class: BD\EzPlatformQueryBundle\Formatter\SearchResult\SimpleOutputResultFormatter
+        arguments:
+            - "@bd_query.formatter.search_hit.oneline"
+
+    bd_query.formatter.search_hit.oneline:
+        class: BD\EzPlatformQueryBundle\Formatter\SearchHit\ExpressionLanguageFormatter
+        arguments:
+            - "'[' ~ content_info(hit).id ~ '] ' ~ content_info(hit).name ~ ' (' ~ type(hit).identifier ~ ')'"
+            - "@ezpublish.api.repository"

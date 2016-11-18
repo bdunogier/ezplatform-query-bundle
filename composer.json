@@ -1,0 +1,14 @@
+{
+    "name": "bdunogier/ezplatform-query-bundle",
+    "description": "An eZ Platform bundle that adds features around Repository Queries.",
+    "type": "ezplatform-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bertrand Dunogier",
+            "email": "bertrand.dunogier@ez.no"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
