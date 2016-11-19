@@ -10,5 +10,8 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "ezsystems/ezpublish-kernel": "^6.4",
+        "symfony/symfony": "^2.3|^3.0"
+    }
 }
